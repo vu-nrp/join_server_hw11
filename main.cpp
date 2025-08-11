@@ -1,7 +1,6 @@
 #include <iostream>
 #include <boost/asio.hpp>
-// #include "async.h"
-#include "joinserver.h"
+#include "server/joinserver.h"
 
 //!
 //! \brief main - app entry point
@@ -16,8 +15,6 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-//    async::init();
-
     try {
         ba::io_context context;
         JoinServer server(context, bi::tcp::endpoint(bi::tcp::v4(), std::atoi(argv[1])));
@@ -26,8 +23,6 @@ int main(int argc, char *argv[])
     } catch (std::exception &exc) {
         std::cout << exc.what() << std::endl;
     }
-
-//    async::deinit();
 
     return 0;
 }

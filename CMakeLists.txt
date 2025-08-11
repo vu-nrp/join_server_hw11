@@ -12,26 +12,17 @@ endif()
 find_package(Boost REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 
-# async lib
-# add_library(async
-#     lib/types.h
-#     lib/async.h
-#     lib/async.cpp
-#     lib/commandparser.h
-#     lib/commandparser.cpp
-# )
-
 # server executable
 add_executable(${PROJECT_NAME}
     main.cpp
-    # server/dispatcher.h
-    # server/dispatcher.cpp
     server/joinserver.h
     server/joinserver.cpp
+    server/processing.h
+    server/processing.cpp
 )
 
-#
-set_target_properties(${PROJECT_NAME} async PROPERTIES
+# set compiller flags
+set_target_properties(${PROJECT_NAME} PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
 )
@@ -46,7 +37,6 @@ PUBLIC
 # server executable linking the lib
 target_link_libraries(${PROJECT_NAME}
 PRIVATE
-    # async
     ${Boost_LIBRARIES}
 )
 
